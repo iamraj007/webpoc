@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploynginx
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      app.kubernetes.io/name: somename
+      name: mynginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        app.kubernetes.io/name: somename
+        name: mynginx
+    spec:
+      containers:
+      - image: iamraj007/my-nginx:v4
+        name: podnginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
